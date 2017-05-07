@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="shortcut icon" href="Retro.png"/>
+        <title>Ajax Cross origin requests are only supported for protocol schemes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+	    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax Tutorials</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#btn').click(function(){
+                $('#test').load("data.txt", {
+                    Name: "Vijesh",
+                    Lastname: "Arora",
+                }, function(){
+                    alert("Hi idiot!");
+                });
+                });
+            });
+       
+    </script>
+</head>
+<body>
+
+    <div id="test"><p>This is the first content!</p></div>
+    <button id="btn">Click to change</button>
+        
+</body>
+</html>

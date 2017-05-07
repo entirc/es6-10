@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="shortcut icon" href="Retro.png"/>
+        <title>ENTI ES6 #10</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <!--
+        https://www.dicio.com.br/iterar/
+        Repetir ou dizer outra vez: itero minhas opiniões acerca dela.
+        Refazer ou fazer outra vez: itero meu trabalho.
+        
+        //http://www.devmedia.com.br/conceitos-interfaces-programacao-orientada-a-objetos-parte-1/18695
+        //https://pt.slideshare.net/armandodaniel777/java-orientao-a-objetos-interfaces
+        Podemos definir como interface o contrato entre a classe e o mundo 
+        exterior. Quando uma classe implementa uma interface, se compromete a 
+        fornecer o comportamento publicado por esta interface.
+        
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Iteratores_e_geradores
+        Um objeto é um iterator(iterador) quando sabe como acessar itens  
+        numa coleção, um por vez, enquanto mantém rastreada a posição atual 
+        em uma dada sequência.
+        
+        Em JavaScript um iterator é um objeto que oferece o método next(), 
+        o qual retorna o próximo item da sequência. Este método retorna um 
+        objeto com duas propriedades: done e value.
+        
+        
+        
+        https://objectcomputing.com/resources/publications/sett/javascript-iterators-and-generators/
+        
+        Iterators are objects that have a next method. They are used to visit elements in a sequence. 
+        It is possible for the values in the sequence to be generated in a lazy manner.
+
+        Iterables are objects that have a method whose name is the value of Symbol.iterator. 
+        This method returns an iterator object.
+        
+        
+        http://exploringjs.com/es6/ch_iteration.html
+        
+                An iterable is a data structure that wants to make its elements accessible to the public. 
+                It does so by implementing a method whose key is Symbol.iterator. That method is a factory for iterators.
+                
+                An iterator is a pointer for traversing the elements of a data structure (think cursors in databases).        
+                
+                
+                Expressed as interfaces in TypeScript notation, these roles look like this:
+
+                interface Iterable {
+                    [Symbol.iterator]() : Iterator;
+                }
+                
+                interface Iterator {
+                    next() : IteratorResult;
+                }
+                
+                interface IteratorResult {
+                    value: any;
+                    done: boolean;
+                }
+                
+                
+                The following values are iterable:
+
+                Arrays
+                Strings
+                Maps
+                Sets
+                DOM data structures (work in progress)
+                        
+                for (const node of document.querySelectorAll('div')) {
+   
+                }
+                     
+        -->
+
+        <div><h1>ENTI</h1></div>
+
+    </body>
+
+    <script>
+        /*
+         let nomes = ['michel', 'adriano', 'medeiros'];
+         console.log(nomes);
+         
+         for (n of nomes) {
+         console.log(n);
+         }
+         */
+
+
+
+        //let pessoa = {"fisionomia": "indígena", "cor": "preta"};
+        //console.log(pessoa);
+
+        // not iterable erro
+        // for(p of pessoa){
+        // console.log(p);
+        //}
+
+
+
+
+
+
+        /*  console.log("-----------------------------------------------------------");
+         
+         let pessoa = {
+         "fisionomia": "indígena",
+         "cor": "preta",
+         [Symbol.iterator]: function* () {
+         yield this.fisionomia;
+         yield this.cor;
+         }
+         };*/
+        //console.log(pessoa);
+        /* for (p of pessoa) {
+         console.log(p);
+         }*/
+        /*
+         let mi = pessoa[Symbol.iterator]();
+         console.log(mi);
+         console.log(mi.next());
+         console.log(mi.next());
+         */
+
+
+
+        /*
+         console.log("-----------------------------------------------------------------");
+         //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Operador_Condicional
+         
+         let nomes = ['michel', 'adriano', 'medeiros'];
+         console.log(nomes);
+         
+         function makeIterator(array) {
+         var nextIndex = 0;
+         //console.log("-----------------------");
+         //  console.log(array[nextIndex]);
+         
+         return {
+         next: function () {
+         return nextIndex < array.length ?
+         {value: array[nextIndex++], done: false} :
+         {done: true};
+         }
+         };
+         }
+         
+         let novaListaNomes = makeIterator(nomes);
+         console.log(novaListaNomes);
+         console.log(novaListaNomes.next());
+         console.log(novaListaNomes.next());
+         console.log(novaListaNomes.next());
+         console.log(novaListaNomes.next());
+         
+         console.log("*********************************************************");
+         
+         let meuIterator = nomes[Symbol.iterator]();
+         console.log(meuIterator);
+         console.log(meuIterator.next());
+         console.log(meuIterator.next());
+         console.log(meuIterator.next());
+         console.log(meuIterator.next());
+         
+         console.log("*********************************************************");
+         
+         
+         */
+
+
+
+
+        /*
+         * Not all iterable content does have to come from data structures, 
+         * it could also be computed on the fly. For example, all major ES6 
+         * data structures (Arrays, Typed Arrays, Maps, Sets) have three methods 
+         * that return iterable (?iterator?) objects:
+         
+         entries() returns an iterable over entries encoded as [key, value] Arrays.
+         For Arrays, the values are the Array elements and the keys are their indices. 
+         For Sets, each key and value are the same – the Set element.
+         
+         keys() returns an iterable over the keys of the entries.
+         
+         values() returns an iterable over the values of the entries.
+         */
+
+
+        /*
+         console.log("*******************entries******************************");
+         //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/entries
+         //O método entries() retorna um novo objeto Array Iterator que contém os 
+         //pares chave/valor para cada índice no array.
+         let nomes = ['michel', 'adriano', 'medeiros'];
+         console.log(nomes);
+         
+         let someArrayEntries = nomes.entries();
+         console.log(someArrayEntries);
+         
+         //while (someArrayEntries.next().done === false) {
+         //  console.log(someArrayEntries.next().value);
+         //}
+         
+         
+         console.log(someArrayEntries.next());
+         console.log(someArrayEntries.next());
+         console.log(someArrayEntries.next());
+         */
+
+        /*
+         console.log("****************EX. SET***********************************");
+         //JavaScript Recipes
+         //http://www.apress.com/us/book/9781430261063
+         let nomes = ['michel', 'adriano', 'medeiros'];
+         console.log(nomes);
+         
+         let bandSet = new Set();
+         bandSet.add('Dave');
+         bandSet.add('Martin');
+         bandSet.add('Fletch');
+         bandSet.add('Jim');
+         bandSet.add('Paul');
+         bandSet.add('Kurt');
+         bandSet.add('Andy');
+         bandSet.add('Vince');
+         
+         console.log(bandSet);
+         
+         let entry = bandSet.entries();
+         console.log(entry);
+         //console.log(entry.next().value); //returns ["Dave", "Dave"]
+         //console.log(entry.next()); //returns Object {value: Array[2], done: false}
+         while (entry.next().done === false) {  //as long as the current item returns false then keep going
+         console.log(entry.next().value);
+         };
+         
+         
+         */
+
+
+        /*  
+         console.log("****************EX. MAP***********************************");
+         
+         let mapObj = new Map();
+         mapObj.set('1st key', '1st value');
+         mapObj.set('2nd key', '2nd value');
+         mapObj.set('3rd key', '3rd value');
+         
+         console.log(mapObj);
+         
+         mapObj.forEach(function (value, key) {
+         console.log('mapObj[' + key + '] = ' + value);
+         });
+         
+         
+         console.log("----------SET--------------");
+         let bandSet = new Set();
+         bandSet.add('Dave');
+         bandSet.add('Martin');
+         bandSet.add('Fletch');
+         bandSet.add('Jim');
+         bandSet.add('Paul');
+         bandSet.add('Kurt');
+         bandSet.add('Andy');
+         bandSet.add('Vince');
+         
+         bandSet.forEach(function (value, key) {
+         console.log('bandSet[' + key + '] = ' + value);
+         });
+         
+         
+         
+         */
+
+
+        /*   
+         let mapObj = new Map();
+         mapObj.set('1st key', '1st value');
+         mapObj.set('2nd key', '2nd value');
+         mapObj.set('3rd key', '3rd value');
+         console.log(mapObj);
+         console.log(mapObj.keys()); //returns MapIterator object
+         
+         let mapIterator = mapObj.keys();
+         //console.log(mapIterator.next().value); //1st value
+         //console.log(mapIterator.next().value); //2nd value
+         while (mapIterator.next().done === false) {
+         console.log(mapIterator.next());
+         }
+         
+         
+         console.log("***********values()********************");
+         
+         
+         console.log(mapObj.values());
+         let mapIterator1 = mapObj.values();
+         while (mapIterator1.next().done === false) {
+         console.log(mapIterator1.next());
+         }
+         */
+
+
+
+
+        /*
+         * Array.prototype.map()
+         * https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+         * 
+         * Map.prototype.forEach()
+         * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
+         * 
+         * Map.prototype[@@iterator]()
+         * https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Map/@@iterator
+         * 
+         *entries() returns an iterable over entries encoded as [key, value] Arrays.
+         For Arrays, the values are the Array elements and the keys are their indices. 
+         For Sets, each key and value are the same – the Set element.
+         */
+
+        /*            
+         let mapObj = new Map();
+         mapObj.set('1st key', '1st value');
+         mapObj.set('2nd key', '2nd value');
+         mapObj.set('3rd key', '3rd value');
+         
+         let mapIterator0 = mapObj.entries();
+         console.log(mapObj.entries());
+         
+         while (mapIterator0.next().done === false) {
+         console.log(mapIterator0.next());
+         }
+         
+         
+         //erro
+         //        mapIterator0.forEach(function (value, key) {
+         //          console.log('mapIterator0[' + key + '] = ' + value);
+         //    });
+         
+         
+         console.log("****************Sem o método entries()*******************");
+         
+         let mapObj1 = new Map();
+         mapObj1.set('1st key', '1st value');
+         mapObj1.set('2nd key', '2nd value');
+         mapObj1.set('3rd key', '3rd value');
+         
+         console.log(mapObj1);
+         
+         mapObj1.forEach(function (value, key) {
+         console.log('mapObj1[' + key + '] = ' + value);
+         });
+         
+         
+         console.log("******************Set com entries()***********************)");
+         let bandSet = new Set();
+         bandSet.add('Dave');
+         bandSet.add('Martin');
+         bandSet.add('Fletch');
+         bandSet.add('Jim');
+         bandSet.add('Paul');
+         bandSet.add('Kurt');
+         bandSet.add('Andy');
+         bandSet.add('Vince');
+         
+         console.log(bandSet);
+         console.log(bandSet.entries());
+         
+         
+         */
+
+
+
+
+        /*  
+         console.log("*******************keys******************************");
+         let nomes = ['michel', 'adriano', 'medeiros'];
+         console.log(nomes);
+         
+         let sk = nomes.keys();
+         console.log(sk);
+         console.log(sk.next());
+         console.log(sk.next());
+         
+         //erro
+         //let sv = nomes.values();
+         
+         let sv = nomes[Symbol.iterator]();
+         console.log(sv);
+         console.log(sv.next());
+         console.log(sv.next());
+         
+         */
+
+
+        //JavaScript Recipes
+        //http://www.apress.com/us/book/9781430261063
+        console.log("Can You Use a Symbol as Part of a Function or Method in an Object?");
+        let helloSymbol = Symbol('Hello World Function');
+
+        let myObj = {
+            [helloSymbol] () {
+                return 'Hello World';
+            }
+        };
+
+        console.log(myObj);
+        console.log(myObj[helloSymbol]());
+
+        let iterableObj = {
+            [Symbol.iterator] () {
+                let dataArray = ['this', 'that', 'other'];
+                return dataArray[Symbol.iterator]();
+
+              /*  let currentIndex = 0;
+                return {
+                    next() {
+                        if (currentIndex < dataArray.length) {
+                            return {value: dataArray[currentIndex++]};
+                        } else {
+                            return {done: true};
+                        }
+                    }
+                };*/
+            }
+        };
+
+       // for (let x of iterableObj) {
+      //      console.log(x); //returns this, that, other
+     //   }
+
+
+
+        
+         console.log("****************Meu Iterador********************************");
+         
+         let meuIterador = iterableObj[Symbol.iterator]();
+         console.log(meuIterador);
+         console.log(meuIterador.next());
+         console.log(meuIterador.next());
+         console.log(meuIterador.next());
+         console.log(meuIterador.next().done);
+         console.log(meuIterador.next());
+         
+         
+
+
+
+
+    </script>
+
+
+    <!-- 
+    Javascript Iterators tutorial
+    https://www.youtube.com/watch?v=ZNrJPzjNt-o
+    
+    Iterators and Generators in Javascript
+    https://www.kenneth-truyers.net/2016/05/20/iterators-and-generators-in-javascript/
+    
+    ES6 and Typescript Tutorial -38 - Iterables and Iterators
+    https://www.youtube.com/watch?v=c5x7z02Idfo
+    
+    Iterators in ECMAScript 2015
+    https://www.youtube.com/watch?v=Uwq70vpZbJA
+    
+    -->
+
+</html>

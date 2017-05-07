@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="shortcut icon" href="Retro.png"/>
+        <title>Fibonacci</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+   	</body>
+   	<script>
+   		console.log("**************************Versão 5********************");
+   		//Sobre funções imediatas JavaScript (IIFE)
+   		// IIFE (Expressão de Função Imediatamente Invocada ou Immediately-Invoked Function Expression)
+   		//https://imasters.com.br/front-end/javascript/sobre-funcoes-imediatas-javascript-iife/?trace=1519021197&source=single
+   		
+   		//JavaScript IIFE como contêiner de códigos
+   		//http://desenvolvimentoparaweb.com/javascript/javascript-iife-conteiner-de-codigos/
+   		
+   		/*
+   		 
+   		 var fibonacci = {
+		    next: (function () {
+		        var anterior = 0, atual = 1;
+		        return function () {
+		            tmp = anterior;
+		            
+		            		        	console.log("anterior " + anterior + " atual " + atual);
+		            
+		            
+		            anterior = atual;
+		            atual += tmp;
+		            return atual;
+		        };
+		    })()
+		};
+		
+		var n;
+		for (;;) {
+		    n = fibonacci.next();
+		    if (n > 1000)
+		        break;
+		    console.log(n);
+		}
+		
+		* */
+		
+		console.log("**********************Versão 6***********************************")
+		
+		/*let fibonacci = {
+		    [Symbol.iterator]() {
+		        let pre = 0, cur = 1
+		        return {
+		           next () {
+		               [ pre, cur ] = [ cur, pre + cur ]
+		               return { done: false, value: cur }
+		           }
+		        }
+		    }
+		}
+		
+		console.log(fibonacci);
+		
+		for (let n of fibonacci) {
+		    if (n > 1000)
+		        break
+		    console.log(n)
+		}
+		*/
+		
+		//let naoBasta = fibonacci[Symbol.iterator]();
+		//console.log(naoBasta);
+		//console.log(naoBasta.next());
+		
+
+   		
+   	</script>
+    </html>

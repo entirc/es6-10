@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="shortcut icon" href="Retro.png"/>
+        <title>Typed Array</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+   	<body>
+   	<img src="http://exploringjs.com/es6/images/typed-arrays----typed_arrays_class_diagram.jpg" />
+   	</body>
+   	<script>
+		//http://exploringjs.com/es6/ch_typed-arrays.html
+		//Typed Arrays are an ECMAScript 6 API for handling binary data.
+		
+		const typedArray = new Uint8Array([0,1,2]);
+		console.log(typedArray.length); // 3
+		console.log(typedArray);
+		typedArray[0] = 5;
+		const normalArray = [...typedArray]; // [5,1,2]
+		console.log(normalArray);
+		
+		// The elements are stored in typedArray.buffer.
+		// Get a different view on the same data:
+		const dataView = new DataView(typedArray.buffer);
+		console.log(dataView.getUint8(0)); // 5
+		
+		
+		/*
+		 Instances of ArrayBuffer store the binary data to be processed. 
+		 Two kinds of views are used to access the data:
+
+		Typed Arrays (Uint8Array, Int16Array, Float32Array, etc.) interpret 
+		the ArrayBuffer as an indexed sequence of elements of a single type.
+		
+		Instances of DataView let you access data as elements of several types 
+		(Uint8, Int16, Float32, etc.), at any byte offset inside an ArrayBuffer.
+		
+		The following browser APIs support Typed Arrays
+		
+		File API
+		XMLHttpRequest
+		Fetch API
+		Canvas
+		WebSockets
+		And more
+		
+		 */
+		   
+		console.log("Exemplo do es6-features.org")   	
+		class Example {
+		    constructor (buffer = new ArrayBuffer(24)) {
+		        this._buffer = buffer;
+		    }
+		    set buffer (buffer) {
+		        this._buffer    = buffer;
+		        this._id        = new Uint32Array (this._buffer,  0,  1);
+		        this._username  = new Uint8Array  (this._buffer,  4, 16);
+		        this._amountDue = new Float32Array(this._buffer, 20,  1);
+		    }
+		    get buffer ()     { return this._buffer;       }
+		    //set id (v)        { this._id[0] = v           }
+		    get id ()         { return this._id[0];        }
+		    //set username (v)  { this._username[0] = v     }
+		    get username ()   { return this._username[0];  }
+		    //set amountDue (v) { this._amountDue[0] = v    }
+		    get amountDue ()  { return this._amountDue[0]; }
+		}
+		
+		let example = new Example();
+		example.id = 7;
+		example.username = "John Doe";
+		example.amountDue = 42.0;	
+		
+		console.log(example);
+				   	
+		   	
+		   	
+		   	
+		   	
+    </script>
+    </html>
